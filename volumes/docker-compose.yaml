@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  mongodb1:
+    container_name: mongodb1
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: febrianto
+      MONGO_INITDB_ROOT_PASSWORD: febri123
+    volumes:
+      - type: volume
+        source: mongo-volume
+        target: "/data/db"
+        read_only: false
+
+volumes:
+  mongo-volume:
+    name: mongo-volume
