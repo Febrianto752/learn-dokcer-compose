@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  mongodb1:
+    container_name: mongodb1
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: febrianto
+      MONGO_INITDB_ROOT_PASSWORD: febri123
+    networks:
+      - network-app
+
+  mongo-express:
+    container_name: mongo-express
+    image: mongo-express:latest
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: febrianto
+      ME_CONFIG_MONGODB_ADMINPASSWORD: febri123
+      ME_CONFIG_MONGODB_SERVER: "mongodb1"
+    networks:
+      - network-app
+    depends_on:
+      - mongodb1
+
+networks:
+  network-app:
+    name: network-app
+    driver: bridge
