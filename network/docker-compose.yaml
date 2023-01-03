@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  mongodb1:
+    container_name: mongodb1
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: febrianto
+      MONGO_INITDB_ROOT_PASSWORD: febri123
+    networks:
+      - network-app
+
+networks:
+  network-app:
+    name: network-app
+    driver: bridge
